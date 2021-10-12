@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Vaksin</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</head>
+<style>
+    .container {
+        margin-top: 10%;
+    }
+
+    label {
+        font-weight: 600;
+    }
+</style>
+
+<body style="background-color:#f0f2f5">
+    <nav class="navbar navbar-light" style="background-color: #013880;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="/img/logo-its-putih-transparan.png" alt="" width="150" height="90" class="mx-5">
+            </a>
+        </div>
+    </nav>
+    <div class="container card px-5 py-1 mx-auto my-4 shadow p-3 mb-5 rounded" style="max-width: 65rem;">
+        <h2 class="my-3">Form Vaksin Mahasiswa</h2>
+        <div class="alert alert-primary" role="alert">
+            Pertanyaan di bawah ini ditujukan untuk melakukan rekap atas mahasiswa Institut Teknologi Sepuluh Nopember
+            yang telah melakukan vaksinasi untuk kepentingan UTS. Harap diisi dengan baik, terima kasih.
+        </div>
+        <hr>
+        <form name="formPendaftaran" action="" onsubmit="return validateForm()" id="myForm">
+            <div class="form-group my-1">
+                <label>Nama Mahasiswa</label>
+                <input type="text" name="nama" placeholder="Nama lengkap" class="form-control" required maxlength="40"
+                    minlength="3">
+            </div>
+            <div class="form-group my-1">
+                <label>NRP Mahasiswa</label>
+                <input type="text" name="nrp" placeholder="NRP Mahasiswa" class="form-control" required maxlength="40"
+                    minlength="3">
+            </div>
+            <div class="form-group my-1">
+                <label>Email</label>
+                <input type="email" name="email" placeholder="Email sesuai Integra" required class="form-control">
+                <small id="emailHelp" class="form-text text-muted">Email Akan Digunakan Untuk Mengirimkan
+                    Notifikasi.</small>
+            </div>
+            <div class="form-group my-1">
+                <label for="jurusan">Departemen</label>
+                <select name="jurusan" class="form-control form-select" required id="jurusan">
+                    <option value="0">Pilih Departemen</option>
+                    <option value="1">Departemen Teknik Informatika</option>
+                    <option value="2">Departemen Sistem Informasi</option>
+                    <option value="3">Departemen Teknologi Informasi</option>
+                    <option value="3">Departemen Biomedik</option>
+                    <option value="3">Departemen Teknik Elektro</option>
+                </select>
+            </div>
+            <div class="form-group my-1">
+                <label>Status Vaksin</label>
+                <select name="vaksin" class="form-control form-select">
+                    <option value="0">Pilih Status Vaksin</option>
+                    <option value="1">Sudah</option>
+                    <option value="2">Belum</option>
+                </select>
+            </div>
+            <div class="form-group hidden" for="vaksin_sudah">
+                <label class="control-label" for="upload-file">Upload File Sertifikat</label><br>
+                <small id="uploadHelp" class="form-text text-muted">Bagi yang sudah vaksin</small><br>
+                <input type="file" class="form-control-file" id="upload-file">
+
+            </div>
+
+            <div class="form-check form-group my-3">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                <p class="form-check-label" for="flexCheckChecked">
+                    Data yang saya isikan di atas adalah data yang benar.
+                </p>
+            </div>
+
+            <button onclick="myFunction()" type="submit" class="btn btn-primary my-3" id="myBtn" data-toggle="modal"
+                data-target="#myModal" style="background-color: #013880;">Submit</button>
+
+            <div id="myModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Modal Header</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>Some text in the modal.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </form>
+    </div>
+    <script>
+        function validateForm() {
+            if (document.forms["formPendaftaran"]["nama"].value == "") {
+                alert("Nama Tidak Boleh Kosong");
+                document.forms["formPendaftaran"]["nama"].focus();
+                return false;
+            }
+            if (document.forms["formPendaftaran"]["nrp"].value == "") {
+                alert("NRP Tidak Boleh Kosong");
+                document.forms["formPendaftaran"]["nrp"].focus();
+                return false;
+            }
+            if (document.forms["formPendaftaran"]["email"].value == "") {
+                alert("Email Tidak Boleh Kosong");
+                document.forms["formPendaftaran"]["email"].focus();
+                return false;
+            }
+            if (document.forms["formPendaftaran"]["jurusan"].selectedIndex < 1) {
+                alert("Pilih Departemen. Departemen tidak boleh kosong.");
+                document.forms["formPendaftaran"]["jurusan"].focus();
+                return false;
+            }
+            if (document.forms["formPendaftaran"]["vaksin"].selectedIndex < 1) {
+                alert("Pilih Vaksin.");
+                document.forms["formPendaftaran"]["vaksin"].focus();
+                return false;
+            }
+
+            swal({
+                title: "Data Berhasil Tersimpan",
+                text: "Terima kasih telah mengisi form!",
+                icon: 'success',
+            }).then(okay => {
+                if (okay) {
+                    window.location.href = "index.html";
+                }
+            });
+
+
+            return false;
+        }
+
+
+    </script>
+
+
+</body>
+
+</html>
